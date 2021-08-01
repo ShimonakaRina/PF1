@@ -1,24 +1,36 @@
-# README
+#　サイト名
+CookNoah
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+料理レシピの投稿と閲覧
 
-Things you may want to cover:
+### サイトテーマ
+料理のレシピを投稿したり、閲覧したり、評価したりできるSNSサイト
 
-* Ruby version
+### テーマを選んだ理由
+毎日食事の献立を考えるのは大変だという話を前職の職場の方や母親から何度も聞いたことがあり、家庭の料理を担当する人には同じような悩みを抱えている人が多いと考え、その悩みを少しでも解決する手助けになれたらという思いから選びました。
 
-* System dependencies
+### ターゲットユーザ
+家庭の料理を作る人（女性中心）
 
-* Configuration
+### 主な利用シーン
+昼食や夕食を作るとき
 
-* Database creation
+## 設計書
+https://docs.google.com/spreadsheets/d/14AuFUYvn3vlvHtcDKVxgEjoJ-2nSd0cs/edit#gid=374140823
+file:///C:/Users/%E3%81%97%E3%82%82%E3%81%AA%E3%81%8B/Desktop/PF_ER%E5%9B%B3_%E4%B8%8B%E4%B8%AD%E9%87%8C%E5%A5%88.pdf
+https://docs.google.com/spreadsheets/d/10sTM6IqZ0XRrkb4hUWPSF9MSbHzEFXYi/edit#gid=1764082505
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/15TWna4V-59K_OShSNCHlmrPq4zTMpK6SL8dnUDVrAKk/edit#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+ぱくたそ
+https://www.pakutaso.com/
