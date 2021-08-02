@@ -36,3 +36,6 @@ https://docs.google.com/spreadsheets/d/15TWna4V-59K_OShSNCHlmrPq4zTMpK6SL8dnUDVr
 ## 使用素材
 ぱくたそ
 https://www.pakutaso.com/
+
+ロゴ作成
+https://www.designevo.com/
