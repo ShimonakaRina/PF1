@@ -1,15 +1,18 @@
 class FavoritesController < ApplicationController
   def create
     @cook = Cook.find(params[:cook_id])
-    favorite = @cook.favorites.new(user_id: current_user.id)
+    favorite = current_user.favorites.new(cook_id: @cook.id)
     favorite.save
-    redirect_to request.referer
+    @cook.create_notification_by(current_user)
+      respond_to do |format|
+        format.html {redirect_to request.referrer}
+        format.js
+    end
   end
-  
+
   def destroy
     @cook = Cook.find(params[:cook_id])
-    favorite = @cook.favorites.find_by(user_id: current_user.id)
+    favorite = current_user.favorites.find_by(cook_id: @cook.id)
     favorite.destroy
-    redirect_to request.referer
   end
 end

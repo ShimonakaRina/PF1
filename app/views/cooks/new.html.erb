@@ -1,0 +1,23 @@
+<h2>料理投稿</h2>
+    <%= form_with model: @cook, url:'/cooks', local:true do |f| %>
+    <div class="form-group">
+     　   <%= f.label :Title %>
+          <%= f.text_field :title, class:"form-control cook_title" %>
+    </div>
+    <div class="form-group">
+        <label for="cook_image">Image</label>
+        <%= f.attachment_field :cook_image %>
+    </div>
+    <div class="form-group">
+          <%= f.label :Opinion %>
+          <%= f.text_area :body, class:"form-control cook_body" %>
+    </div>
+    <div class="field">
+      <%= f.label :tag_names %>
+    <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids',\
+    placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
+  　　</div>
+    <div class="form-group">
+      <%= f.submit 'Create Cook', class:"btn btn-success" %>
+    </div>
+    <% end %>

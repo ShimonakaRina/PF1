@@ -1,0 +1,14 @@
+<h3 class="text-center">通知</h3>
+    <%= link_to notifications_path, method: :delete do %>
+        <i class="fas fa-trash" style="color: black;"></i>
+        <h7 style="color: black;">全削除</h7>
+    <% end %>
+    <hr>
+
+    <div class="users-index">
+      <% @notifications.each do |notification| %>
+      <%= notification.id %>
+      <%= notification.visiter.name %>
+      <%= notification.action %>
+      <% end %>
+    </div>

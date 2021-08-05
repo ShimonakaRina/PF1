@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_060809) do
   create_table "cook_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "cook_id"
-    t.string "body"
+    t.string "comment"
     t.float "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

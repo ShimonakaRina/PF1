@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <% if @cook.errors.any? %>
+        <%= @cook.errors.count %>errors
+        <% @cook.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      <%= form_with model: @cook, local:true do |f| %>
+      <div class="form-group">
+        <label for="cook.title">Title</label>
+        <%= f.text_field :title, class:"form-control cook_title" %>
+      </div>
+      <div class="form-group">
+        <label for="cook_image">Image</label>
+        <%= f.attachment_field :cook_image %>
+    </div>
+    <div class="field">
+      <%= f.label :tag_names %>
+    <%= f.text_field :tag_ids,value: @tag_list,\
+    placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
+  　　</div>
+      <div class="form-group">
+        <label for="cook_opinion">Opinion</label>
+          <%= f.text_area :body, class:"form-control cook_body" %>
+      </div>
+      <%= f.submit "Update Book", class:"btn btn-success" %>
+      <% end %>
+      <%= link_to "Show", cook_path(@cook.id) %>
+      |
+      <%= link_to "Back", cooks_path %>
+    </div>
+  </div>
+</div>
