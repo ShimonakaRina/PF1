@@ -1,0 +1,34 @@
+<table>
+  <% cook.cook_comments.each do |cook_comment| %>
+    <% cook_comment_user = cook_comment.user %>
+    <tr>
+    	 <td>
+    		<%= link_to user_path(cook_comment_user), class: "user_#{cook_comment_user.id}" do %>
+      		<%= attachment_image_tag cook_comment_user, :profile_image, :fill, 50, 50, fallback: "human_noimage.png", size: "50x50" %><br>
+      		<%= cook_comment_user.name %>
+    		<% end %>
+    		</td>
+        <p>評価 :<%= cook_comment.rate%>点</p>
+    <div id="rate_star<%= cook_comment.id%>"></div>    
+    <script>
+    $('#rate_star<%= cook_comment.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half      : true,
+        readOnly: true,
+        score: <%= cook_comment.rate %>,
+      });
+    </script>
+  </div>
+    	 <td><%= cook_comment.comment %></td>
+    	 <% if current_user == cook_comment_user %>
+      	 <td>
+      	   <%= link_to cook_cook_comment_path(cook_comment.cook_id, cook_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true do %>Destroy
+      	 </td>
+    	 <% end %>
+    	 <% end %>
+    </tr>
+  <% end %>
+</table>
