@@ -30,6 +30,13 @@
   color: #ffccff;
 }
 
+.wrapper{
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 70px;/*←footerの高さ*/
+    box-sizing: border-box;
+}
+
 .fixed-bottom {
   background-color: #666633;
   height: 70px;

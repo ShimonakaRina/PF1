@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
     #current_userの投稿に紐づいた通知一覧
     @notifications = current_user.passive_notifications
   
-    #@notificationの中でまだ確認していない(indexに一度も遷移していない)通知のみ
+    #@notificationの中でまだ確認していない(indexに一度も遷移していない)通知の
     
  end
 
