@@ -12,6 +12,7 @@ $(function(){
 </script> 
 <div class="container">
   <div class="row">
+    <div id="added-message"></div>
     <div class="col-md-8 offset-md-1">
       <h2>Cook detail</h2>
         <table class="table">
@@ -22,7 +23,7 @@ $(function(){
           <tr>
             <td>
               <%= link_to user_path(@cook.user_id) do %>
-              <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg",size: "40x40" %>
+              <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
               <% end %>
               <br><%= link_to @user.name, user_path(@cook.user.id) %>
             </td>

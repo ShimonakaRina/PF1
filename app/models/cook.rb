@@ -17,7 +17,7 @@ class Cook < ApplicationRecord
 
     def create_notification_comment!(current_user, cook_comment_id)
         # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
-        temp_ids = Comment.select(:user_id).where(cook_id: id).where.not(user_id: current_user.id).distinct
+        temp_ids = CookComment.select(:user_id).where(cook_id: id).where.not(user_id: current_user.id).distinct
         temp_ids.each do |temp_id|
             save_notification_comment!(current_user, cook_comment_id, temp_id['user_id'])
         end
@@ -39,11 +39,11 @@ class Cook < ApplicationRecord
         end
         notification.save if notification.valid?
     end
-    
+
     def favorited_by?(user)
       favorites.where(user_id: user.id).exists?
     end
-    
+
     def save_tags(savecook_tags)
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
       old_tags = current_tags - savecook_tags
