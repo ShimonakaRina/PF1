@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
   def index
     @user = current_user
     @users = User.order("RANDOM()").limit(10)

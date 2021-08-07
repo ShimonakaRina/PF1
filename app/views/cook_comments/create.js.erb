@@ -1,2 +1,6 @@
 $('#cook_comment_buttons_<%= @cook.id %>').html("<%= j(render "cook_comments", cook: @cook) %>");
 $("#cook_comment_comment").val(""); 
+
+<% flash.each do |type, message| %>
+  $("#added-message").html('<p> <%= message %></p>')
+<% end %>

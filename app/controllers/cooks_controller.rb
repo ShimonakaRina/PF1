@@ -22,7 +22,7 @@ class CooksController < ApplicationController
   end
 
   def timeline
-    @cooks = Cook.where(user_id: [current_user.id, *current_user.followed_ids]).order(created_at: :desc)
+    @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc)
   end
 
   def index
