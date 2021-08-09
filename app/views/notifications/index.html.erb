@@ -7,11 +7,11 @@
     <% end %>
     <hr>
 
+    <% if @notifications.exists? %>
     <div class="users-index">
-      <% @notifications.each do |notification| %>
-      <%= notification.id %>
-      <%= notification.visiter.name %>
-      <%= notification.action %>
-      <% end %>
+        <%= render @notifications %>
     </div>
+<% else %>
+    <p>通知はありません</p>
+<% end %>
     </div>
