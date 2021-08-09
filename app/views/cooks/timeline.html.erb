@@ -34,6 +34,7 @@
             <%= render "favorites/favorites", cook: cook %>
             </td>
             <td>コメント数: <%= cook.cook_comments.count %></td>
+            <td><%= @rate[cook.id].round(1) %></td>
           <% end %>
 
         </tbody>

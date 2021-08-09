@@ -1,17 +1,10 @@
 <div class="container">
-  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  a
-  fixed-bottom
-  fixed-bottom
-  fixed-bottom
-
-  vendorfixed-bottom</br>
-  vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>
-zazaza
-vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>vendorfixed-bottom</br>
-zazanann
-vendorfixed-bottom</br>vendorfixed-bottom</br>zazazaz
+  <ul class="bxslider">
+    <% @cooks.each do |cook| %>
+      <li>
+        <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "120x120" %>
+        <h4><%= cook.title %></h4>
+      </li>
+    <% end %>
+  </ul>
 </div>

@@ -19,15 +19,19 @@ class CooksController < ApplicationController
   end
 
   def rank
+    @cooks = Cook.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def timeline
     @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc)
+    @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def index
     @user = current_user
     @cooks = Cook.all
+    @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def show
@@ -35,6 +39,7 @@ class CooksController < ApplicationController
     @user = @cook.user
     @cook_comment = CookComment.new
     @cook_comments = CookComment.all
+    @rate = CookComment.where(cook_id: params[:id]).group(:cook_id).average(:rate).values.first
   end
 
   def edit

@@ -18,7 +18,7 @@ $(function(){
         <table class="table">
           <tr>
             <td>投稿者</td>
-            <td colspan="5">料理</td>
+            <td colspan="7">料理</td>
           </tr>
           <tr>
             <td>
@@ -55,6 +55,7 @@ $(function(){
               <% end %>
             </td>
             <td>コメント数: <%= @cook.cook_comments.count %></td>
+            <td><%= @rate.round(1) %></td>
           </tr>
         </table>
         <div id="cook_comment_buttons_<%= @cook.id %>">
