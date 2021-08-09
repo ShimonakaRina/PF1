@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="col-xs-12">
+    <% if @model == "user" %>
+    <h2>Users search for '<%= @value %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Introduction</th>
+            </tr>
+        </thead>
+    <% @datas.each do |user| %>
+        <tbody>
+            <tr>
+                <th>
+                    <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "human_noimage.png", size:'40x40') %>
+                </th>
+                <th>
+                    <%= user.name %>
+                </th>
+                <th>
+                    <%= user.introduction %>
+                </th>
+            </tr>
+        </tbody>
+    <% end %>
+    <% elsif @model == "cook" %>
+    <h2>Cooks search for '<%= @value %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+            </tr>
+        </thead>
+        <% @datas.each do |cook| %>
+        <tbody>
+            <tr>
+                <th>
+                  <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+                </th>
+                <th>
+                    <%= cook.title %>
+                </th>
+                <th>
+                    <%= cook.body %>
+                </th>
+            </tr>
+        </tbody>
+        <% end %>
+    <% end %>
+    </table>
+  </div>
+</div>

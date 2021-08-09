@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
-  get '/search', to: 'searches#search'
+  get '/search', to: 'search#search'
   get '/cooks/rank' => 'cooks#rank', as: 'rank'
   get "/cooks/timeline" => "cooks#timeline", as: 'timeline'
   delete '/notifications' => 'notifications#destroy_all'

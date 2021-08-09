@@ -58,4 +58,16 @@ class Cook < ApplicationRecord
         self.tags << cook_tag
       end
     end
+    def self.sort(selection)
+      case selection
+      when 'new'
+          return all.order(created_at: :DESC)
+      when 'old'
+          return all.order(created_at: :ASC)
+      when 'likes'
+          return find(Favorite.group(:cook_id).order(Arel.sql('count(cook_id) desc')).pluck(:cook_id))
+      when 'dislikes'
+          return find(Favorite.group(:cook_id).order(Arel.sql('count(cook_id) asc')).pluck(:cook_id))
+      end
+    end
 end

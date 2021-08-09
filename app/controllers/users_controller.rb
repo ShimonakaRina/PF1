@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
   def index
     @user = current_user
-    @users = User.order("RANDOM()").limit(10)
+    @users = User.order("RANDOM()").limit(20)
   end
   
   def show
@@ -32,4 +33,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
   
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to user_path
+    end
+  end
 end

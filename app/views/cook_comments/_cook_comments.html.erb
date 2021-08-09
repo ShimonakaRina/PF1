@@ -8,8 +8,10 @@
       		<%= cook_comment_user.name %>
     		<% end %>
     		</td>
-        <p>評価 :<%= cook_comment.rate%>点</p>
-    <div id="rate_star<%= cook_comment.id%>"></div>    
+        
+    	 <td><%= cook_comment.comment %></td>
+    	 <td>
+    	   <div id="rate_star<%= cook_comment.id%>"></div>    
     <script>
     $('#rate_star<%= cook_comment.id%>').raty({
         size      : 36,
@@ -22,7 +24,8 @@
       });
     </script>
   </div>
-    	 <td><%= cook_comment.comment %></td>
+    	 </td>
+    	 
     	 <% if current_user == cook_comment_user %>
       	 <td>
       	   <%= link_to cook_cook_comment_path(cook_comment.cook_id, cook_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true do %>Destroy

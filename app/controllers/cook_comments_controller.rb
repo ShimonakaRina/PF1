@@ -5,6 +5,7 @@ class CookCommentsController < ApplicationController
 		@cook_comment = CookComment.new(cook_comment_params)
 		@cook_comment.cook_id = @cook.id
 		@cook_comment.user_id = current_user.id
+
 		if @cook_comment.save
 		respond_to do |format|
         format.js { flash[:notice] = "コメントを追加しました。" }
