@@ -18,11 +18,18 @@
           <div class="row">
 
             <% if user_signed_in? %>
+            
           </div>
       </div>
               <li><%= link_to "Home", user_path(current_user.id),class:"fas fa-home nav-link headtext" %></li>
               <li><%= link_to "users", users_path,class:"fas fa-users nav-link headtext" %></li>
               <li><%= link_to "cooks", cooks_path,class:"fas fa-utensils nav-link headtext" %></li>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+              <li>
+                <%= link_to "NOTICE", notifications_path, class: "fas fa-bell nav-link headtext" %>
+              </li>
               <li><%= link_to "logout", destroy_user_session_path,class:"fas fa-sign-out-alt nav-link headtext", method: :delete %></li>
             <% else %>
               <li><%= link_to "Home", root_path,class:"fas fa-home nav-link headtext" %></li>

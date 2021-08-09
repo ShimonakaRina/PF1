@@ -39,14 +39,27 @@
         <tbody>
             <tr>
                 <th>
-                  <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+                  <%= link_to cook_path(cook.id) do %>
+                <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+                
+              <% end %>
                 </th>
                 <th>
-                    <%= cook.title %>
+                    <%= link_to cook.title, "/cooks/#{cook.id}" %>
                 </th>
+                <td>
+                <% cook.tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
+              </td>
                 <th>
                     <%= cook.body %>
                 </th>
+                <td id="favorite_buttons_<%= cook.id %>">
+            <%= render "favorites/favorites", cook: cook %>
+            </td>
+            <td>コメント数: <%= cook.cook_comments.count %></td>
+            <td><%= @rate[cook.id].round(1) %></td>
             </tr>
         </tbody>
         <% end %>
