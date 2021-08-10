@@ -2,17 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark kou">
     <div class="container">
       <a class="navbar-brand" href="/" ><%= image_tag 'CookNoah.png', class: "logo" %></a>
-      <% if user_signed_in?  %>
-        <%= form_with url:search_path, method: :get, local: true do |f| %>
-          <%= f.text_field 'search[value]' %>
-          <%= f.select 'search[model]', options_for_select({ "ユーザー名" => "user", "投稿タイトル" => "cook" }) %>
-          <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
-          <%= f.submit :"検索" %>
-        <% end %>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
+      
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <div class="row">
@@ -31,7 +22,14 @@
                 <%= link_to "NOTICE", notifications_path, class: "fas fa-bell nav-link headtext" %>
               </li>
               <li><%= link_to "logout", destroy_user_session_path,class:"fas fa-sign-out-alt nav-link headtext", method: :delete %></li>
-            <% else %>
+            <% if user_signed_in?  %>
+        <%= form_with url:search_path, method: :get, local: true do |f| %>
+          <%= f.text_field 'search[value]' %>
+          <%= f.select 'search[model]', options_for_select({ "ユーザー名" => "user", "投稿タイトル" => "cook" }) %>
+          <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+          <%= f.submit :"検索" %>
+        <% end %>
+      <% end %><% else %>
               <li><%= link_to "Home", root_path,class:"fas fa-home nav-link headtext" %></li>
               <li><%= link_to "about", about_path,class:"fas fa-link nav-link headtext" %></li>
               <li>

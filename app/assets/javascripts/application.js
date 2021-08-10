@@ -33,3 +33,4 @@ jQuery(document).on('turbolinks:load', function(){
     autoHover: true       // ホバー時に自動スライドを停止
   });
 });
+
