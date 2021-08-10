@@ -17,8 +17,13 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
 
 
+.enjoy {
+  font-size: 80px;
+font-family: 'WindSong', cursive;
+}
 
 .kou {
   background-color: #666633;

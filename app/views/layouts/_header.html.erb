@@ -2,26 +2,24 @@
   <nav class="navbar navbar-expand-lg navbar-dark kou">
     <div class="container">
       <a class="navbar-brand" href="/" ><%= image_tag 'CookNoah.png', class: "logo" %></a>
-      
-      
+
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <div class="row">
+
 
             <% if user_signed_in? %>
-            
-          </div>
-      </div>
-              <li><%= link_to "Home", user_path(current_user.id),class:"fas fa-home nav-link headtext" %></li>
-              <li><%= link_to "users", users_path,class:"fas fa-users nav-link headtext" %></li>
-              <li><%= link_to "cooks", cooks_path,class:"fas fa-utensils nav-link headtext" %></li>
+
+
+              <li><%= link_to "マイページ", user_path(current_user.id),class:"fas fa-home nav-link headtext text-nowrap" %></li>
+              <li><%= link_to "ユーザー", users_path,class:"fas fa-users nav-link headtext text-nowrap" %></li>
+              <li><%= link_to "投稿一覧", cooks_path,class:"fas fa-utensils nav-link headtext text-nowrap" %></li>
               <% if unchecked_notifications.any? %>
                 <i class="fa fa-circle" style="color: gold;"></i>
               <% end %>
               <li>
-                <%= link_to "NOTICE", notifications_path, class: "fas fa-bell nav-link headtext" %>
+                <%= link_to "通知", notifications_path, class: "fas fa-bell nav-link headtext text-nowrap" %>
               </li>
-              <li><%= link_to "logout", destroy_user_session_path,class:"fas fa-sign-out-alt nav-link headtext", method: :delete %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path,class:"fas fa-sign-out-alt nav-link headtext text-nowrap", method: :delete %></li>
             <% if user_signed_in?  %>
         <%= form_with url:search_path, method: :get, local: true do |f| %>
           <%= f.text_field 'search[value]' %>
@@ -30,13 +28,13 @@
           <%= f.submit :"検索" %>
         <% end %>
       <% end %><% else %>
-              <li><%= link_to "Home", root_path,class:"fas fa-home nav-link headtext" %></li>
-              <li><%= link_to "about", about_path,class:"fas fa-link nav-link headtext" %></li>
+              <li><%= link_to "トップ", root_path,class:"fas fa-home nav-link headtext text-nowrap" %></li>
+              <li><%= link_to "CookNoah", about_path,class:"fas fa-link nav-link headtext text-nowrap" %></li>
               <li>
-                <%= link_to "sign up", new_user_registration_path,class:"fas fa-user-plus nav-link headtext" %>
+                <%= link_to "新規登録", new_user_registration_path,class:"fas fa-user-plus nav-link headtext text-nowrap" %>
               </li>
               <li>
-                 <%= link_to "login", new_user_session_path,class:"fas fa-sign-in-alt nav-link headtext" %>
+                 <%= link_to "ログイン", new_user_session_path,class:"fas fa-sign-in-alt nav-link headtext text-nowrap" %>
               </li>
             <% end %>
         </ul>
