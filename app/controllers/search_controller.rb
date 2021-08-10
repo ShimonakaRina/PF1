@@ -25,7 +25,7 @@ class SearchController < ApplicationController
   def forward(model, value)
     if model == 'User'
       User.where("name LIKE ?", "#{value}%")
-    elsif model == 'ook'
+    elsif model == 'Cook'
       Cook.where("title LIKE ?", "#{value}%")
     end
   end
@@ -50,10 +50,6 @@ class SearchController < ApplicationController
     case how
       when 'match'
         match(model, value)
-      when 'forward'
-        forward(model, value)
-      when 'backward'
-        backward(model, value)
       when 'partical'
         partical(model, value)
       

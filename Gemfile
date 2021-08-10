@@ -80,3 +80,5 @@ gem 'pry-byebug'
 gem 'ransack'
 
 gem 'bxslider-rails'
+
+gem 'devise-i18n'
