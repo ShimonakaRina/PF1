@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/search', to: 'search#search'
   get '/cooks/rank' => 'cooks#rank', as: 'rank'
   get "/cooks/timeline" => "cooks#timeline", as: 'timeline'
+  get '/tag_search' => 'search#tag_search', as: 'tag_search'
   delete '/notifications' => 'notifications#destroy_all'
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'

@@ -4,6 +4,12 @@ class SearchController < ApplicationController
     @value = params["search"]["value"]
     @how = params["search"]["how"]
     @datas = search_for(@how, @model, @value)
+    @rate = CookComment.group(:cook_id).average(:rate)
+  end
+  
+  def tag_search
+    @cooks = params[:tag_id].present? ? Tag.find(params[:tag_id]).cooks : Cook.all
+    @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   private
