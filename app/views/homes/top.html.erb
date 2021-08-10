@@ -1,8 +1,10 @@
 <div class="container">
+  <%= image_tag 'welcome.png', :size => '1200x300' %>
+  <h1 class="enjoy text-center">\Let's enjoy cooking!/</h1>
   <ul class="bxslider">
     <% @cooks.each do |cook| %>
       <li>
-        <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "120x120" %>
+        <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "500x500" %>
         <h4><%= cook.title %></h4>
       </li>
     <% end %>
