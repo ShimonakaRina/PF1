@@ -9,6 +9,7 @@ class SearchController < ApplicationController
   
   def tag_search
     @cooks = params[:tag_id].present? ? Tag.find(params[:tag_id]).cooks : Cook.all
+    @cooks = @cooks.page(params[:page]).per(10)
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 

@@ -20,16 +20,18 @@ class CooksController < ApplicationController
 
   def rank
     @cooks = Cook.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @cooks = Kaminari.paginate_array(@cooks).page(params[:page]).per(10)
+
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def timeline
-    @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc)
+    @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc).page(params[:page]).per(10)
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def index
-    @cooks = Cook.all.order(created_at: :desc).page(params[:page]).per(20)
+    @cooks = Cook.all.order(created_at: :desc).page(params[:page]).per(10)
     @user = current_user
     @rate = CookComment.group(:cook_id).average(:rate)
   end

@@ -1,25 +1,22 @@
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <div class="col-md-3">
-      </div>
-    <div class="col-md-8 offset-md-1">
-      <h2>Cooks</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Tag</th>
-            <th colspan="3">Opinion</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @cooks.each do |cook| %>
+<div class="container mt-5">
+    <h2 class="bg-light text-center">タイムライン</h2>
+    
+    <table class="table table-hover table-inverse mt-5">
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>タグ</th>
+          <th colspan="3">レシピ説明</th>
+          <th>評価(平均)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cooks.each do |cook| %>
           <tr>
             <th>
               <%= link_to cook_path(cook.id) do %>
-                <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-                
+                <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
               <% end %>
             <th>
               <%= link_to cook.title, "/cooks/#{cook.id}" %>
@@ -34,12 +31,13 @@
             <%= render "favorites/favorites", cook: cook %>
             </td>
             <td>コメント数: <%= cook.cook_comments.count %></td>
+            <% if @rate[cook.id] %>
             <td><%= @rate[cook.id].round(1) %></td>
+            <% else %>
+            <td>評価なし</td>
+            <% end %>
           <% end %>
-
-        </tbody>
-        
-      </table>
-    </div>
-  </div>
+      </tbody>
+  </table>
+  <%= paginate @cooks %>
 </div>

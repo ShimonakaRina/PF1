@@ -9,7 +9,7 @@ $(function(){
     half: true,
   });
 });
-</script> 
+</script>
 <div class="container">
   <div class="row">
     <div id="added-message"></div>
@@ -55,7 +55,11 @@ $(function(){
               <% end %>
             </td>
             <td>コメント数: <%= @cook.cook_comments.count %></td>
-            <td><%= @rate.round(1) %></td>
+            <% if @rate.present? %>
+              <td><%= @rate.round(1) %></td>
+            <% else %>
+              <td>評価なし</td>
+            <% end %>
           </tr>
         </table>
         <div id="cook_comment_buttons_<%= @cook.id %>">
@@ -71,7 +75,7 @@ $(function(){
       <div class="form-group row" id="rate_star">
         <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
       </div>
-       
+
         <%= f.text_area :comment, size:"90x5" %><br>
         <%= f.submit '送信'%>
         <% end %>

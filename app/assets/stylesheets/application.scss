@@ -41,11 +41,12 @@ font-family: 'WindSong', cursive;
 .wrapper{
     min-height: 100vh;
     position: relative;
-    padding-bottom: 70px;/*←footerの高さ*/
+    padding-bottom: 70px;
     box-sizing: border-box;
 }
 
 .fixed-bottom {
+  font-family: 'WindSong', cursive;
   background-color: #CCCC99;
   height: 70px;
   color: #333300;

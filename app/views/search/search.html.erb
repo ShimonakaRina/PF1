@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-xs-12">
     <% if @model == "user" %>
-    <h2>Users search for '<%= @value %>'</h2>
+    <h2>ユーザー名'<%= @value %>'の検索結果</h2>
     <table class="table">
         <thead>
             <tr>
@@ -26,7 +26,7 @@
         </tbody>
     <% end %>
     <% elsif @model == "cook" %>
-    <h2>Cooks search for '<%= @value %>'</h2>
+    <h2>投稿タイトル'<%= @value %>'の検索結果</h2>
     <table class="table">
         <thead>
             <tr>
@@ -41,7 +41,7 @@
                 <th>
                   <%= link_to cook_path(cook.id) do %>
                 <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-                
+
               <% end %>
                 </th>
                 <th>
