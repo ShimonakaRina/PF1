@@ -29,8 +29,8 @@ class CooksController < ApplicationController
   end
 
   def index
+    @cooks = Cook.all.order(created_at: :desc).page(params[:page]).per(20)
     @user = current_user
-    @cooks = Cook.all
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
