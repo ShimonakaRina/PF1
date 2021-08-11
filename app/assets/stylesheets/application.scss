@@ -26,16 +26,16 @@ font-family: 'WindSong', cursive;
 }
 
 .kou {
-  background-color: #666633;
+  background-color: #CCCC99;
 }
 
 .logo {
-  height: 70px;
-  width: 180px;
+  height: 100px;
+  width: 100px;
 }
 
 .headtext {
-  color: #ffccff;
+  color: #333300;
 }
 
 .wrapper{
@@ -46,8 +46,16 @@ font-family: 'WindSong', cursive;
 }
 
 .fixed-bottom {
-  background-color: #666633;
+  background-color: #CCCC99;
   height: 70px;
-  color: #ffccff;
+  color: #333300;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.page, .next, .last, .first, .prev {
+  padding-right: 1vw;
 }
 

@@ -11,8 +11,8 @@
 
 
               <li><%= link_to "マイページ", user_path(current_user.id),class:"fas fa-home nav-link headtext text-nowrap" %></li>
-              <li><%= link_to "ユーザー", users_path,class:"fas fa-users nav-link headtext text-nowrap" %></li>
-              <li><%= link_to "投稿一覧", cooks_path,class:"fas fa-utensils nav-link headtext text-nowrap" %></li>
+              <li><%= link_to "タイムライン", timeline_path,class:"fas fa-users nav-link headtext text-nowrap" %></li>
+              <li><%= link_to "新着投稿", cooks_path,class:"fas fa-utensils nav-link headtext text-nowrap" %></li>
               <% if unchecked_notifications.any? %>
                 <i class="fa fa-circle" style="color: gold;"></i>
               <% end %>
