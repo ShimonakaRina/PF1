@@ -1,5 +1,7 @@
-<h2>プロフィール</h2>
-  <%= attachment_image_tag user, :profile_image, format: 'png', fallback: "human_noimage.jpg",size: "200x200" %>
+<h2 class="text-center">プロフィール</h2>
+<div class="text-center">
+  <%= attachment_image_tag user, :profile_image, format: 'png', fallback: "human_noimage.png",size: "250x250" %>
+  </div>
     <table class="table">
       <tbody>
         <tr></tr>
@@ -8,7 +10,7 @@
 	        <td><%= user.name %></td>
         </tr>
         <tr>
-	        <td>一言</td>
+	        <td>自己紹介</td>
 	        <td><%= user.introduction %></td>
         </tr>
         <tr>
@@ -21,15 +23,16 @@
         </tr>
       </tbody>
   </table>
+  <div class="follow_btn">
   <% unless @user.id == current_user.id %>
   <% if current_user.following?(user) %>
-      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+      <%= link_to 'follow', unfollow_path(user.id), method: :POST,class:"btn btn-danger mt-3" %>
     <% else %>
-      <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+      <%= link_to 'unfollow', follow_path(user.id), method: :POST, class:"btn btn-success mt-3" %>
     <% end %>
-  
+  </div>
   <% end %>
-    <div class="row">
+    <div class="row mt-5">
       <%= link_to edit_user_path(user),class:"btn btn-outline-secondary btn-block fas fa-user-cog" do %>
       <% end %>
     </div>

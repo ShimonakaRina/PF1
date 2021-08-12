@@ -7,7 +7,6 @@
           <th></th>
           <th>タイトル</th>
           <th>タグ</th>
-          <th colspan="3">レシピ説明</th>
           <th>評価(平均)</th>
         </tr>
       </thead>
@@ -16,7 +15,7 @@
           <tr>
             <th>
               <%= link_to cook_path(cook.id) do %>
-                <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+                <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "200x200" %>
               <% end %>
             <th>
               <%= link_to cook.title, "/cooks/#{cook.id}" %>
@@ -26,7 +25,6 @@
                 <%= tag.name %>
               <% end %>
             </th>
-            <th><%= cook.body %></th>
             <td id="favorite_buttons_<%= cook.id %>">
             <%= render "favorites/favorites", cook: cook %>
             </td>

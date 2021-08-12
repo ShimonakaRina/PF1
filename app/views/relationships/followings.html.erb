@@ -3,8 +3,8 @@
   <table class="table">
             <thead>
               <tr>
-                <th>image</th>
-                <th>name</th>
+                <th>プロフィール画像</th>
+                <th>名前</th>
                 <th></th>
               </tr>
             </thead>
@@ -27,15 +27,15 @@
                   <p>
                     <% if current_user != user %>
                       <% if current_user.following?(user) %>
-                        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+                        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST,class: "btn btn-sm btn-danger" %>
                       <% else %>
-                        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+                        <%= link_to 'フォローする', follow_path(user.id), method: :POST,class: "btn btn-sm btn-success" %>
                       <% end %>
                     <% end %>
                   </p>
                 </th>
                 <th>
-                  <%= link_to "Show", user_path(user.id) %>
+                  <%= link_to "詳細ページ", user_path(user.id) %>
                 </th>
             </tr>
             <% end %>
