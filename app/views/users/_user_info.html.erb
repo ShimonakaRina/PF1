@@ -23,12 +23,12 @@
         </tr>
       </tbody>
   </table>
-  <div class="follow_btn">
   <% unless @user.id == current_user.id %>
-  <% if current_user.following?(user) %>
-      <%= link_to 'follow', unfollow_path(user.id), method: :POST,class:"btn btn-danger mt-3" %>
+  <div class="follow_btn">
+    <% if current_user.following?(user) %>
+      <%= link_to 'follow', unfollow_path(user.id), method: :POST,class:"btn btn-success mt-3" %>
     <% else %>
-      <%= link_to 'unfollow', follow_path(user.id), method: :POST, class:"btn btn-success mt-3" %>
+      <%= link_to 'unfollow', follow_path(user.id), method: :POST, class:"btn btn-danger mt-3" %>
     <% end %>
   </div>
   <% end %>
