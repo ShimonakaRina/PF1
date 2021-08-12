@@ -1,4 +1,9 @@
-<div class="col-md-8 offset-md-1">
+<div class="container">
+  <div class="row">
+    <div class="col mt-5">
+      <%= render 'users/user_info', user: @user %>
+    </div>
+    <div class="col-8 mt-5">
       <h2>投稿料理一覧</h2>
       <table class="table table-hover table-inverse">
         <thead>
@@ -14,7 +19,7 @@
               <tr>
                 <td>
                     <%= link_to user_path(cook.user_id) do %>
-                      <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "human_noimage.png",size: "40x40" %>
+                      <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "100x100" %>
                     <% end %>
                 </td>
                 <td>
@@ -24,4 +29,6 @@
               <% end %>
         </tbody>
       </table>
+  </div>
+  </div>
   </div>

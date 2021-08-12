@@ -1,22 +1,22 @@
-<h2>User info</h2>
-  <%= attachment_image_tag user, :profile_image, format: 'png', fallback: "human_noimage.jpg",size: "100x100" %>
+<h2>プロフィール</h2>
+  <%= attachment_image_tag user, :profile_image, format: 'png', fallback: "human_noimage.jpg",size: "200x200" %>
     <table class="table">
       <tbody>
         <tr></tr>
         <tr>
-          <td>name</td>
+          <td>名前</td>
 	        <td><%= user.name %></td>
         </tr>
         <tr>
-	        <td>introduction</td>
+	        <td>一言</td>
 	        <td><%= user.introduction %></td>
         </tr>
         <tr>
-          <td>follows</td>
+          <td>フォロー</td>
           <td><%= link_to user.following_user.count, user_followings_path(user) %></td>
         </tr>
         <tr>
-          <td>followers</td>
+          <td>フォロワー</td>
           <td><%= link_to user.follower_user.count, user_followers_path(user) %></td>
         </tr>
       </tbody>
