@@ -12,6 +12,9 @@ class Cook < ApplicationRecord
           visited_id: user_id,
           action: "Favorite"
         )
+        if notification.visiter_id == notification.visited_id
+          notification.checked = true
+        end
         notification.save if notification.valid?
   end
 
