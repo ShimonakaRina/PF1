@@ -20,6 +20,7 @@ class UsersController < ApplicationController
      flash[:notice] = "ユーザー情報の更新をしました。"
      redirect_to user_path(@user.id)
     else
+     flash[:notice] = "ユーザー情報の更新に失敗しました。必須項目の入力と字数制限を守ってください。"
      render action: :edit
     end
   end 
