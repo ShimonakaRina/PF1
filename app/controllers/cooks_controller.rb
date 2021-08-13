@@ -41,6 +41,7 @@ class CooksController < ApplicationController
     @user = @cook.user
     @cook_comment = CookComment.new
     @cook_comments = CookComment.all
+    @cook_comments = CookComment.page(params[:page]).per(1)
     @rate = CookComment.where(cook_id: params[:id]).group(:cook_id).average(:rate).values.first
   end
 

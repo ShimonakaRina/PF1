@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @cooks = @user.cooks
+    @cooks = @user.cooks.page(params[:page]).per(5)
     @rate = CookComment.group(:cook_id).average(:rate)
   end
   

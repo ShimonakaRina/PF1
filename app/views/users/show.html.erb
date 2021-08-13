@@ -15,25 +15,27 @@
             </tr>
         </thead>
         <tbody>
-            <% @cooks.each do |cook| %>
-              <tr>
-                <td>
-                    <%= link_to user_path(cook.user_id) do %>
-                      <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "100x100" %>
-                    <% end %>
-                </td>
-                <td>
-                    <%= link_to cook.title, "/cooks/#{cook.id}" %>
-                </td>
-                <td>コメント数: <%= cook.cook_comments.count %></td>
-                  <% if @rate[cook.id] %>
-                    <td><%= @rate[cook.id].round(1) %></td>
-                  <% else %>
-                    <td>評価なし</td>
-                  <% end %>
-              <% end %>
+          <% @cooks.each do |cook| %>
+            <tr>
+              <td>
+                <%= link_to user_path(cook.user_id) do %>
+                  <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "100x100" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to cook.title, "/cooks/#{cook.id}" %>
+              </td>
+              <td>コメント数: <%= cook.cook_comments.count %></td>
+                <% if @rate[cook.id] %>
+                  <td><%= @rate[cook.id].round(1) %></td>
+                <% else %>
+                  <td>評価なし</td>
+                <% end %>
+              </tr>
+          <% end %>
         </tbody>
       </table>
+      <%= paginate @cooks %>
+    </div>
   </div>
-  </div>
-  </div>
+</div>
