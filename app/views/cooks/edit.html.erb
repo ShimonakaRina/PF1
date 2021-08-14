@@ -1,36 +1,30 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h1>Editing Book</h1>
-      <% if @cook.errors.any? %>
-        <%= @cook.errors.count %>errors
-        <% @cook.errors.full_messages.each do |message| %>
-          <%= message %>
-        <% end %>
-      <% end %>
+      <h2 class="bg-light text-center">投稿編集画面</h2>
       <%= form_with model: @cook, local:true do |f| %>
       <div class="form-group">
-        <label for="cook.title">Title</label>
+        <label for="cook.title">タイトル</label>
         <%= f.text_field :title, class:"form-control cook_title" %>
       </div>
       <div class="form-group">
-        <label for="cook_image">Image</label>
+        <label for="cook_image">完成写真</label>
         <%= f.attachment_field :cook_image %>
     </div>
     <div class="field">
-      <%= f.label :tag_names %>
+      <%= f.label :タグ %>
     <%= f.text_field :tag_ids,value: @tag_list,\
     placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
   　　</div>
-      <div class="form-group">
-        <label for="cook_opinion">Opinion</label>
+      <div class="form-group mt-2">
+        <label for="cook_opinion">レシピ</label>
           <%= f.text_area :body, class:"form-control cook_body" %>
       </div>
-      <%= f.submit "Update Book", class:"btn btn-success" %>
+      <div class="form-group text-center">
+      <%= f.submit "更新", class:"btn btn-success mb-5" %>
+      </div>
       <% end %>
-      <%= link_to "Show", cook_path(@cook.id) %>
-      |
-      <%= link_to "Back", cooks_path %>
+      <%= link_to "詳細画面へ戻る", cook_path(@cook.id),class: "btn btn-sm btn-outline-secondary" %>
     </div>
   </div>
 </div>

@@ -15,6 +15,7 @@ class CooksController < ApplicationController
      redirect_to cook_path(@cook.id)
     else
      render action: :index
+     flash[:notice] = "投稿に失敗しました。タイトルとレシピは必ず入力してください。"
     end
   end
 
@@ -59,6 +60,7 @@ class CooksController < ApplicationController
      redirect_to cook_path(@cook.id)
     else
      render action: :edit
+     flash[:notice] = "更新に失敗しました。タイトルとレシピは必ず入力してください。"
     end
   end
 

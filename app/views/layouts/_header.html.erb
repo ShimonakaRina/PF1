@@ -6,6 +6,7 @@
         <% if user_signed_in? %>
 
           <li><%= link_to "Mypage", user_path(current_user.id),class:"nav-link headtext text-nowrap" %></li>
+          <li><%= link_to "Post", new_cook_path,class:"nav-link headtext text-nowrap" %></li>
           <li><%= link_to "Timeline", timeline_path,class:"nav-link headtext text-nowrap" %></li>
           <li><%= link_to "Rank", rank_path,class:"nav-link headtext text-nowrap" %></li>
           <% if unchecked_notifications.any? %>
