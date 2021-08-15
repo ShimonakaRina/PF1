@@ -25,13 +25,13 @@
     </script>
   </div>
     	 </td>
-    	 
     	 <% if current_user == cook_comment_user %>
       	 <td>
-      	   <%= link_to cook_cook_comment_path(cook_comment.cook_id, cook_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true do %>Destroy
+      	   <%= link_to cook_cook_comment_path(cook_comment.cook_id, cook_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true do %>削除
       	 </td>
     	 <% end %>
     	 <% end %>
     </tr>
   <% end %>
 </table>
+<%= paginate @cook_comments %>

@@ -9,72 +9,67 @@ $(function(){
     half: true,
   });
 });
-</script> 
-<div class="container">
-  <div class="row">
-    <div id="added-message"></div>
-    <div class="col-md-8 offset-md-1">
-      <h2>Cook detail</h2>
-        <table class="table">
-          <tr>
-            <td>投稿者</td>
-            <td colspan="7">料理</td>
-          </tr>
-          <tr>
-            <td>
-              <%= link_to user_path(@cook.user_id) do %>
-              <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-              <% end %>
-              <br><%= link_to @user.name, user_path(@cook.user.id) %>
-            </td>
-            <td>
-              <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-            </td>
-            <td>
-              <%= link_to @cook.title, cook_path(@cook.id) %>
-            </td>
-            <td>
-              <td>
-              <% @cook.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
-            </td>
-            </td>
-            <td><%= @cook.body %></td>
-            <td id="favorite_buttons_<%= @cook.id %>">
-            <%= render "favorites/favorites", cook: @cook %>
-            </td>
-            <td>
-              <% if @cook.user == current_user %>
-              <%= link_to "編集", edit_cook_path(@cook.id), class:"btn btn-sm btn-success" %>
-              <% end %>
-            </td>
-            <td>
-              <% if @cook.user == current_user %>
-              <%= link_to "削除", cook_path(@cook.id), method: :delete, class:"btn btn-sm btn-danger" %>
-              <% end %>
-            </td>
-            <td>コメント数: <%= @cook.cook_comments.count %></td>
-            <td><%= @rate.round(1) %></td>
-          </tr>
-        </table>
-        <div id="cook_comment_buttons_<%= @cook.id %>">
-         <%= render "cook_comments/cook_comments", cook: @cook %>
-       </div>
-        <% if @cook_comment.errors.any? %>
-        <%= @cook_comment.errors.count %>件のエラーです。
-        <% @cook_comment.errors.full_messages.each do |message| %>
-          <%= message %>
+</script>
+
+<div class="container mt-5">
+  <div id="added-message"></div>
+  <h2>投稿詳細</h2>
+
+  <table class="table">
+    <tr>
+      <td>投稿者</td>
+      <td colspan="7">料理</td>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to user_path(@cook.user_id) do %>
+          <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
         <% end %>
+        <br><%= link_to @user.name, user_path(@cook.user.id) %>
+      </td>
+      <td>
+        <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+      </td>
+      <td>
+        <%= link_to @cook.title, cook_path(@cook.id) %>
+      </td>
+      <td>
+        <% @cook.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+      </td>
+      <td><%= @cook.body %></td>
+      <td id="favorite_buttons_<%= @cook.id %>">
+        <%= render "favorites/favorites", cook: @cook %>
+      </td>
+      <td>
+        <% if @cook.user == current_user %>
+          <%= link_to "編集", edit_cook_path(@cook.id), class:"btn btn-sm btn-success" %>
+        <% end %>
+      </td>
+      <td>
+        <% if @cook.user == current_user %>
+          <%= link_to "削除", cook_path(@cook.id), method: :delete, class:"btn btn-sm btn-danger" %>
+        <% end %>
+      </td>
+      <td>コメント数: <%= @cook.cook_comments.count %></td>
+      <% if @rate.present? %>
+        <td><%= @rate.round(1) %></td>
+      <% else %>
+        <td>評価なし</td>
       <% end %>
-        <%= form_with model:[@cook,@cook_comment], remote: true do |f| %>
-      <div class="form-group row" id="rate_star">
-        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-      </div>
-       
-        <%= f.text_area :comment, size:"90x5" %><br>
-        <%= f.submit '送信'%>
-        <% end %>
-        </div>
-      </div>
+    </tr>
+  </table>
+
+  <div id="cook_comment_buttons_<%= @cook.id %>">
+    <%= render "cook_comments/cook_comments", cook: @cook %>
+  </div>
+  <%= form_with model:[@cook,@cook_comment], remote: true do |f| %>
+    <div class="form-group row" id="rate_star">
+      <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label text-center' %>
     </div>
+    <%= f.label :comment,'コメント本文', class:'col-md-3 col-form-label text-center d-flex align-items-center' %>
+    <%= f.text_area :comment, size:"90x5" %><br>
+    <%= f.submit '送信'%>
+  <% end %>
+</div>

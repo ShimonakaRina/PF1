@@ -12,6 +12,9 @@ class CookCommentsController < ApplicationController
       end
 		@cook.create_notification_comment!(current_user, @cook_comment.id)
 		else
+				respond_to do |format|
+        format.js { flash[:notice] = "コメント投稿に失敗しました。本文と評価は必ず入力してください" }
+      end
 		end
   end
 

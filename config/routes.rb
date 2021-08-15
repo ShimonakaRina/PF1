@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :cook_comments, only: [:new, :create, :edit, :update, :destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:show, :edit, :update]
   resources :notifications, only: [:index]
 end

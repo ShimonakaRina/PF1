@@ -1,3 +1,21 @@
 // Place all the styles related to the Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.about-image {
+  background-image: image-url('5199638_s.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.about-text {
+  color: white; /* 背景色を半透明の黒にする */
+  letter-spacing: 0.5em;
+  min-height: 63vw;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.about-title {
+  font-family: 'WindSong', cursive;
+  color: white;
+}

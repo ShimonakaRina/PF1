@@ -1,69 +1,79 @@
-<div class="container">
+<div class="container mt-5">
   <div class="col-xs-12">
     <% if @model == "user" %>
-    <h2>Users search for '<%= @value %>'</h2>
-    <table class="table">
+      <h2 class="text-center bg-light">ユーザー名'<%= @value %>'の検索結果</h2>
+      <table class="table mt-5">
         <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Introduction</th>
-            </tr>
+          <tr>
+            <th></th>
+            <th>ユーザー名</th>
+            <th>自己紹介</th>
+            <th>フォロー数</th>
+            <th>フォロワー数</th>
+            <th></th>
+          </tr>
         </thead>
-    <% @datas.each do |user| %>
-        <tbody>
+        <% @datas.each do |user| %>
+          <tbody>
             <tr>
-                <th>
-                    <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "human_noimage.png", size:'40x40') %>
-                </th>
-                <th>
-                    <%= user.name %>
-                </th>
-                <th>
-                    <%= user.introduction %>
-                </th>
-            </tr>
-        </tbody>
-    <% end %>
-    <% elsif @model == "cook" %>
-    <h2>Cooks search for '<%= @value %>'</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Opinion</th>
-            </tr>
-        </thead>
-        <% @datas.each do |cook| %>
-        <tbody>
-            <tr>
-                <th>
-                  <%= link_to cook_path(cook.id) do %>
-                <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-                
-              <% end %>
-                </th>
-                <th>
-                    <%= link_to cook.title, "/cooks/#{cook.id}" %>
-                </th>
-                <td>
-                <% cook.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
+              <td>
+                <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "human_noimage.png", size:'200x200') %>
               </td>
-                <th>
-                    <%= cook.body %>
-                </th>
-                <td id="favorite_buttons_<%= cook.id %>">
-            <%= render "favorites/favorites", cook: cook %>
-            </td>
-            <td>コメント数: <%= cook.cook_comments.count %></td>
-            <td><%= @rate[cook.id].round(1) %></td>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                <%= user.introduction %>
+              </td>
+              <td>
+                  <%= link_to user.following_user.count, user_followings_path(user) %>
+              </td>
+              <td>
+                  <%= link_to user.follower_user.count, user_followers_path(user) %>
+              </td>
+              <td>
+                  <%= link_to "詳細ページ", user_path(user.id) %>
+              </td>
             </tr>
-        </tbody>
+          </tbody>
         <% end %>
-    <% end %>
+        <% elsif @model == "cook" %>
+          <h2 class="text-center bg-light">投稿タイトル'<%= @value %>'の検索結果</h2>
+          <table class="table mt-5">
+            <thead>
+              <tr>
+                <th>完成写真</th>
+                <th>タイトル</th>
+                <th>タグ</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <% @datas.each do |cook| %>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= link_to cook_path(cook.id) do %>
+                      <%= attachment_image_tag cook, :cook_image, format: 'png', fallback: "noimage.png",size: "200x200" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to cook.title, "/cooks/#{cook.id}" %>
+                  </td>
+                  <td>
+                    <% cook.tags.each do |tag| %>
+                      <%= tag.name %>
+                    <% end %>
+                  </td>
+                  <td id="favorite_buttons_<%= cook.id %>">
+                    <%= render "favorites/favorites", cook: cook %>
+                  </td>
+                  <td>コメント数: <%= cook.cook_comments.count %></td>
+                  <td><%= @rate[cook.id].round(1) %></td>
+                </tr>
+              </tbody>
+            <% end %>
+        <% end %>
     </table>
+    <%= paginate @datas %>
   </div>
 </div>

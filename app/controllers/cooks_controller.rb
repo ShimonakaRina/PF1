@@ -15,22 +15,25 @@ class CooksController < ApplicationController
      redirect_to cook_path(@cook.id)
     else
      render action: :index
+     flash[:notice] = "投稿に失敗しました。タイトルとレシピは必ず入力してください。"
     end
   end
 
   def rank
     @cooks = Cook.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @cooks = Kaminari.paginate_array(@cooks).page(params[:page]).per(10)
+
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def timeline
-    @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc)
+    @cooks = Cook.where(user_id: [current_user.id, *current_user.following_user.ids]).order(created_at: :desc).page(params[:page]).per(10)
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
   def index
+    @cooks = Cook.all.order(created_at: :desc).page(params[:page]).per(10)
     @user = current_user
-    @cooks = Cook.all
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
@@ -39,6 +42,7 @@ class CooksController < ApplicationController
     @user = @cook.user
     @cook_comment = CookComment.new
     @cook_comments = CookComment.all
+    @cook_comments = CookComment.page(params[:page]).per(1)
     @rate = CookComment.where(cook_id: params[:id]).group(:cook_id).average(:rate).values.first
   end
 
@@ -56,6 +60,7 @@ class CooksController < ApplicationController
      redirect_to cook_path(@cook.id)
     else
      render action: :edit
+     flash[:notice] = "更新に失敗しました。タイトルとレシピは必ず入力してください。"
     end
   end
 

@@ -1,0 +1,38 @@
+<h2 class="text-center">プロフィール</h2>
+<div class="text-center">
+  <%= attachment_image_tag user, :profile_image, format: 'png', fallback: "human_noimage.png",size: "250x250" %>
+</div>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <td>名前</td>
+	      <td><%= user.name %></td>
+      </tr>
+      <tr>
+	      <td>自己紹介</td>
+	      <td><%= user.introduction %></td>
+      </tr>
+      <tr>
+        <td>フォロー</td>
+        <td><%= link_to user.following_user.count, user_followings_path(user) %></td>
+      </tr>
+      <tr>
+        <td>フォロワー</td>
+        <td><%= link_to user.follower_user.count, user_followers_path(user) %></td>
+      </tr>
+    </tbody>
+</table>
+<% unless @user.id == current_user.id %>
+  <div class="follow_btn">
+    <% if current_user.following?(user) %>
+      <%= link_to 'follow', unfollow_path(user.id), method: :POST,class:"btn btn-success mt-3" %>
+    <% else %>
+      <%= link_to 'unfollow', follow_path(user.id), method: :POST, class:"btn btn-danger mt-3" %>
+    <% end %>
+  </div>
+<% end %>
+<div class="row mt-5">
+  <%= link_to edit_user_path(user),class:"btn btn-outline-secondary btn-block fas fa-user-cog" do %>
+  <% end %>
+</div>

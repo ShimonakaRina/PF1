@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
-  def index
-    @user = current_user
-    @users = User.order("RANDOM()").limit(20)
-  end
   
   def show
     @user = User.find(params[:id])
-    @cooks = @user.cooks
+    @cooks = @user.cooks.page(params[:page]).per(5)
+    @rate = CookComment.group(:cook_id).average(:rate)
   end
   
   def edit
@@ -23,6 +20,7 @@ class UsersController < ApplicationController
      flash[:notice] = "ユーザー情報の更新をしました。"
      redirect_to user_path(@user.id)
     else
+     flash[:notice] = "ユーザー情報の更新に失敗しました。必須項目の入力と字数制限を守ってください。"
      render action: :edit
     end
   end 

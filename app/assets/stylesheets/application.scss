@@ -18,7 +18,8 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+@import "cooks";
 
 .enjoy {
   font-size: 80px;
@@ -26,28 +27,41 @@ font-family: 'WindSong', cursive;
 }
 
 .kou {
-  background-color: #666633;
+  background-color: #CCCC99;
 }
 
 .logo {
-  height: 70px;
-  width: 180px;
+  height: 100px;
+  width: 100px;
 }
 
 .headtext {
-  color: #ffccff;
+  color: #333300;
+  font-family: 'Sawarabi Mincho', sans-serif;
 }
 
 .wrapper{
     min-height: 100vh;
     position: relative;
-    padding-bottom: 70px;/*←footerの高さ*/
+    padding-bottom: 70px;
     box-sizing: border-box;
 }
 
 .fixed-bottom {
-  background-color: #666633;
+  font-family: 'WindSong', cursive;
+  background-color: #CCCC99;
   height: 70px;
-  color: #ffccff;
+  color: #333300;
 }
 
+.pagination {
+  justify-content: center;
+}
+
+.page, .next, .last, .first, .prev {
+  padding-right: 1vw;
+}
+
+.follow_btn {
+  text-align: center;
+}

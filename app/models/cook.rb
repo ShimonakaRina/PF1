@@ -12,6 +12,9 @@ class Cook < ApplicationRecord
           visited_id: user_id,
           action: "Favorite"
         )
+        if notification.visiter_id == notification.visited_id
+          notification.checked = true
+        end
         notification.save if notification.valid?
   end
 
@@ -70,4 +73,7 @@ class Cook < ApplicationRecord
           return find(Favorite.group(:cook_id).order(Arel.sql('count(cook_id) asc')).pluck(:cook_id))
       end
     end
+
+    validates :title, presence: true
+    validates :body, presence: true
 end
