@@ -1,5 +1,5 @@
 <table>
-  <% cook.cook_comments.each do |cook_comment| %>
+  <% cook_comments.each do |cook_comment| %>
     <% cook_comment_user = cook_comment.user %>
     <tr>
     	 <td>
@@ -8,10 +8,10 @@
       		<%= cook_comment_user.name %>
     		<% end %>
     		</td>
-        
+
     	 <td><%= cook_comment.comment %></td>
     	 <td>
-    	   <div id="rate_star<%= cook_comment.id%>"></div>    
+    	   <div id="rate_star<%= cook_comment.id%>"></div>
     <script>
     $('#rate_star<%= cook_comment.id%>').raty({
         size      : 36,
@@ -34,4 +34,4 @@
     </tr>
   <% end %>
 </table>
-<%= paginate @cook_comments %>
+<%= paginate cook_comments %>

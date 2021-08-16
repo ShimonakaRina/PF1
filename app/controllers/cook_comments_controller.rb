@@ -7,15 +7,12 @@ class CookCommentsController < ApplicationController
 		@cook_comment.user_id = current_user.id
 
 		if @cook_comment.save
-		respond_to do |format|
-        format.js { flash[:notice] = "コメントを追加しました。" }
-      end
-		@cook.create_notification_comment!(current_user, @cook_comment.id)
+		   @cook.create_notification_comment!(current_user, @cook_comment.id)
+		   redirect_to cook_path(@cook)
 		else
-				respond_to do |format|
-        format.js { flash[:notice] = "コメント投稿に失敗しました。本文と評価は必ず入力してください" }
-      end
-		end
+			flash[:notice] = "コメント投稿に失敗しました。本文と評価は必ず入力してください" 
+			redirect_to cook_path(@cook)
+    end
   end
 
   def destroy
