@@ -80,9 +80,9 @@ $(function(){
     </tbody>
 </table>
   <div id="cook_comment_buttons_<%= @cook.id %>">
-    <%= render "cook_comments/cook_comments", cook: @cook %>
+    <%= render "cook_comments/cook_comments", cook: @cook, cook_comments: @cook_comments %>
   </div>
-  <%= form_with model:[@cook,@cook_comment], remote: true do |f| %>
+  <%= form_with model:[@cook,@cook_comment], local: true do |f| %>
     <div class="form-group row" id="rate_star">
       <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label text-center' %>
     </div>
