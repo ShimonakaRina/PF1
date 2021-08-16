@@ -13,54 +13,72 @@ $(function(){
 
 <div class="container mt-5">
   <div id="added-message"></div>
-  <h2>投稿詳細</h2>
+  <h2 class="bg-light text-center">投稿詳細</h2>
 
   <table class="table">
-    <tr>
-      <td>投稿者</td>
-      <td colspan="7">料理</td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to user_path(@cook.user_id) do %>
-          <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
+    <tbody>
+      <tr></tr>
+      <tr>
+        <td>投稿者</td>
+	      <td>
+	        <%= link_to user_path(@cook.user_id) do %>
+          <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "200x200" %>
         <% end %>
-        <br><%= link_to @user.name, user_path(@cook.user.id) %>
-      </td>
-      <td>
-        <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "40x40" %>
-      </td>
-      <td>
-        <%= link_to @cook.title, cook_path(@cook.id) %>
-      </td>
-      <td>
-        <% @cook.tags.each do |tag| %>
+        </td>
+      </tr>
+      <tr>
+	      <td>完成写真</td>
+	      <td>
+	        <%= attachment_image_tag @cook, :cook_image, format: 'png', fallback: "noimage.png",size: "500x500" %>
+	      </td>
+      </tr>
+      <tr>
+        <td>タイトル</td>
+        <td><%= link_to @cook.title, cook_path(@cook.id) %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td>
+          <% @cook.tags.each do |tag| %>
           <%= tag.name %>
         <% end %>
-      </td>
-      <td><%= @cook.body %></td>
-      <td id="favorite_buttons_<%= @cook.id %>">
+        </td>
+      </tr>
+      <tr>
+        <td>レシピ</td>
+        <td><%= @cook.body %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="favorite_buttons_<%= @cook.id %>">
         <%= render "favorites/favorites", cook: @cook %>
       </td>
-      <td>
-        <% if @cook.user == current_user %>
-          <%= link_to "編集", edit_cook_path(@cook.id), class:"btn btn-sm btn-success" %>
-        <% end %>
-      </td>
-      <td>
-        <% if @cook.user == current_user %>
-          <%= link_to "削除", cook_path(@cook.id), method: :delete, class:"btn btn-sm btn-danger" %>
-        <% end %>
-      </td>
-      <td>コメント数: <%= @cook.cook_comments.count %></td>
-      <% if @rate.present? %>
+      </tr>
+      <tr>
+        <td>コメント数</td>
+        <td><%= @cook.cook_comments.count %></td>
+      </tr>
+      <tr>
+        <td>評価</td>
+        <% if @rate.present? %>
         <td><%= @rate.round(1) %></td>
       <% else %>
         <td>評価なし</td>
       <% end %>
-    </tr>
-  </table>
-
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <% if @cook.user == current_user %>
+          <%= link_to "編集", edit_cook_path(@cook.id), class:"btn btn-sm btn-success" %>
+        <% end %>
+          <% if @cook.user == current_user %>
+          <%= link_to "削除", cook_path(@cook.id), method: :delete, class:"btn btn-sm btn-danger ml-5" %>
+        <% end %>
+        </td>
+      </tr>
+    </tbody>
+</table>
   <div id="cook_comment_buttons_<%= @cook.id %>">
     <%= render "cook_comments/cook_comments", cook: @cook %>
   </div>
