@@ -82,3 +82,8 @@ gem 'ransack'
 gem 'bxslider-rails'
 
 gem 'devise-i18n'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

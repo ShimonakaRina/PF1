@@ -8,6 +8,20 @@
   position: relative;
 }
 
+.top-image {
+  background-image: image-url('5026742_m.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.top-text {
+  color: white; /* 背景色を半透明の黒にする */
+  letter-spacing: 0.5em;
+  min-height: 63vw;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
 .about-text {
   color: white; /* 背景色を半透明の黒にする */
   letter-spacing: 0.5em;
