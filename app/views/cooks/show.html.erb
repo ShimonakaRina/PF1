@@ -22,8 +22,9 @@ $(function(){
         <td>投稿者</td>
 	      <td>
 	        <%= link_to user_path(@cook.user_id) do %>
-          <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "200x200" %>
-        <% end %>
+            <%= attachment_image_tag @user, :profile_image, format: 'png', fallback: "noimage.png",size: "200x200" %>
+          <% end %>
+          <br><%= link_to @user.name, user_path(@cook.user_id) %>
         </td>
       </tr>
       <tr>
