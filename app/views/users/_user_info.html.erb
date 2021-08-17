@@ -26,9 +26,9 @@
 <% unless @user.id == current_user.id %>
   <div class="follow_btn">
     <% if current_user.following?(user) %>
-      <%= link_to 'follow', unfollow_path(user.id), method: :POST,class:"btn btn-success mt-3" %>
+      <%= link_to 'unfollow', unfollow_path(user.id), method: :POST,class:"btn btn-danger mt-3" %>
     <% else %>
-      <%= link_to 'unfollow', follow_path(user.id), method: :POST, class:"btn btn-danger mt-3" %>
+      <%= link_to 'follow', follow_path(user.id), method: :POST, class:"btn btn-success mt-3" %>
     <% end %>
   </div>
 <% end %>
