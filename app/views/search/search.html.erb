@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container">
   <div class="col-xs-12">
     <% if @model == "user" %>
-      <h2 class="text-center bg-light">ユーザー名'<%= @value %>'の検索結果</h2>
+      <h2 class="text-center pt-5"><strong>ユーザー名'<%= @value %>'の検索結果</strong></h2>
       <table class="table mt-5">
         <thead>
           <tr>
@@ -38,7 +38,7 @@
           </tbody>
         <% end %>
         <% elsif @model == "cook" %>
-          <h2 class="text-center bg-light">投稿タイトル'<%= @value %>'の検索結果</h2>
+          <h2 class="text-center pt-5">投稿タイトル'<%= @value %>'の検索結果</h2>
           <table class="table mt-5">
             <thead>
               <tr>

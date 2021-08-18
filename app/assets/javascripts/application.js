@@ -34,3 +34,14 @@ jQuery(document).on('turbolinks:load', function(){
   });
 });
 
+// ページ読み込み完了後一度実行する処理を中に記載する
+$(function(){
+  //.search-area-formが押されたら実行する
+  $('.search-area-form').on('click', function() {
+    //押された要素にsearch-area-expansionクラスを付ける
+    $(this).addClass("search-area-expansion");
+    //.search-formの全ての要素から-noneを取り除く
+    $('.search-form').removeClass("d-none");
+  });
+})
+

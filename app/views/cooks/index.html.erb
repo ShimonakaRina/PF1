@@ -1,5 +1,5 @@
-<div class="container mt-5">
-    <h2 class="bg-light text-center headtext">新着ランキング</h2>
+<div class="container">
+    <h2 class="text-center headtext pt-5"><strong>新着ランキング</strong></h2>
     <%= form_with url: tag_search_path, method: :get do %>
       <%= select_tag :tag_id,
         options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
@@ -15,7 +15,6 @@
           <th>完成写真</th>
           <th>タイトル</th>
           <th>タグ</th>
-          <th></th>
           <th></th>
           <th>評価(平均)</th>
         </tr>
@@ -35,9 +34,6 @@
                 <%= tag.name %>
               <% end %>
             </th>
-            <td id="favorite_buttons_<%= cook.id %>">
-            <%= render "favorites/favorites", cook: cook %>
-            </td>
             <td>コメント数: <%= cook.cook_comments.count %></td>
             <% if @rate[cook.id] %>
             <td><%= @rate[cook.id].round(1) %></td>
