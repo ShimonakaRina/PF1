@@ -1,7 +1,7 @@
-<div class="container mt-5">
-  
-  <h2 class="bg-light mb-4 ml-5 text-left">新規会員登録</h2>
-  
+<div class="container">
+
+  <h2 class="mb-4 ml-5 text-left pt-5"><strong>新規会員登録</strong></h2>
+
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -32,7 +32,7 @@
           <%= f.submit "新規登録", class: "btn btn-success" %>
         </div>
       <% end %>
-      
-    <h5 class="bg-light text-left mt-5 ml-5">すでに登録済みの方</h5>
+
+    <h5 class="text-danger text-left mt-5 ml-5"><strong>すでに登録済みの方は</strong></h5>
     <p class="text-left ml-5"><%= link_to "こちら", new_user_session_path %>からログインしてください。</p>
   </div>

@@ -1,5 +1,5 @@
-<div class="container mt-5">
-    <h2 class="bg-light text-center">タイムライン</h2>
+<div class="container">
+    <h2 class="text-center pt-5"><strong>タイムライン</strong></h2>
 
     <table class="table table-hover table-inverse mt-5">
       <thead>
@@ -7,7 +7,6 @@
           <th>完成写真</th>
           <th>タイトル</th>
           <th>タグ</th>
-          <th></th>
           <th></th>
           <th>評価(平均)</th>
         </tr>
@@ -27,9 +26,6 @@
                 <%= tag.name %>
               <% end %>
             </th>
-            <td id="favorite_buttons_<%= cook.id %>">
-            <%= render "favorites/favorites", cook: cook %>
-            </td>
             <td>コメント数: <%= cook.cook_comments.count %></td>
             <% if @rate[cook.id] %>
             <td><%= @rate[cook.id].round(1) %></td>

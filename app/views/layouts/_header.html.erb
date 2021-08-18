@@ -1,38 +1,38 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-dark kou">
     <div class="container">
-      <a class="navbar-brand" href="/" ><%= image_tag 'CookNoah.png', class: "logo" %></a>
-      
+      <a class="navbar-brand ttl" href="/" >CookNoah</a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <% if user_signed_in? %>
 
-          <li><%= link_to "Mypage", user_path(current_user.id),class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Post", new_cook_path,class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Timeline", timeline_path,class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Rank", rank_path,class:"nav-link headtext text-nowrap" %></li>
+          <li><%= link_to "Mypage", user_path(current_user.id),class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Post", new_cook_path,class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Timeline", timeline_path,class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Rank", rank_path,class:"nav-link headt text-nowrap" %></li>
           <% if unchecked_notifications.any? %>
             <i class="fa fa-circle" style="color: gold;"></i>
           <% end %>
-          <li><%= link_to "Notice", notifications_path, class: "nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Logout", destroy_user_session_path,class:"nav-link headtext text-nowrap", method: :delete %></li>
-          <li class="headtext">
+          <li><%= link_to "Notice", notifications_path, class: "nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Logout", destroy_user_session_path,class:"nav-link headt text-nowrap", method: :delete %></li>
+          <li class="headt", id: "search-wrap">
           <% if user_signed_in?  %>
             <%= form_with url:search_path, method: :get, local: true do |f| %>
-              <%= f.text_field 'search[value]' %>
-              <%= f.select 'search[model]', options_for_select({ "ユーザー名" => "user", "投稿タイトル" => "cook" }) %>
-              <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
-              <%= f.submit :"検索" %>
+              <%= f.text_field 'search[value]',id: "search-text", class: "search-area-form" %>
+              <%= f.select 'search[model]', options_for_select({ "ユーザー名" => "user", "投稿タイトル" => "cook" }), {}, {class: "d-none search-form"} %>
+              <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }), {}, {class: "d-none search-form"} %>
+              <%= f.submit :"検索", class: "d-none search-form" %>
             <% end %>
           <% end %>
-          </li>
+          </div>
         <% else %>
-          <li><%= link_to "Top", root_path,class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "CookNoah", about_path,class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Signup", new_user_registration_path,class:"nav-link headtext text-nowrap" %></li>
-          <li><%= link_to "Login", new_user_session_path,class:"nav-link headtext text-nowrap" %></li>
+          <li><%= link_to "Top", root_path,class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "CookNoah", about_path,class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Signup", new_user_registration_path,class:"nav-link headt text-nowrap" %></li>
+          <li><%= link_to "Login", new_user_session_path,class:"nav-link headt text-nowrap" %></li>
         <% end %>
       </div>
     </div>

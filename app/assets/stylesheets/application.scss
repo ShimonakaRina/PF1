@@ -26,13 +26,21 @@
 font-family: 'WindSong', cursive;
 }
 
-.kou {
-  background-color: #CCCC99;
+.ttl {
+  font-family: 'WindSong', cursive;
+  margin-right: 30px;
+  font-size: 30px;
+  padding-top: 10px;
 }
 
-.logo {
-  height: 100px;
-  width: 100px;
+.kou {
+  background-color: #330000;
+  font-family: 'Sawarabi Mincho', sans-serif;
+}
+
+.headt {
+  color: #FFCCCC;
+  font-family: 'Sawarabi Mincho', sans-serif;
 }
 
 .headtext {
@@ -45,13 +53,13 @@ font-family: 'WindSong', cursive;
     position: relative;
     padding-bottom: 70px;
     box-sizing: border-box;
+    background-color: #CCCC99;
 }
 
 .fixed-bottom {
   font-family: 'WindSong', cursive;
   background-color: #CCCC99;
-  height: 70px;
-  color: #333300;
+  height: 20px;
 }
 
 .pagination {
@@ -64,4 +72,32 @@ font-family: 'WindSong', cursive;
 
 .follow_btn {
   text-align: center;
+}
+
+#search-wrap {
+     position: absolute;/*絶対配置にして*/
+   z-index: 2;/*最前面に設定。数字は変更可*/
+   top:10px;
+   right:10px;
+}
+
+/*テキスト入力input設定*/
+ #search-text{
+  -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+  width: 60px;/*テキスト入力エリアが伸びる前の横幅*/
+  height: 40px;
+  padding: 10px;
+  border: none;
+  background:#fff url("https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/7-2-3/img/icon_search.svg") no-repeat 17px center;/*虫眼鏡アイコンを背景に表示*/
+  background-size: 25px 25px;
+  transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
+  outline: none;
+  cursor: pointer;/*カーソルを指マークに*/
+}
+
+/*テキスト入力inputにフォーカスした時の形状*/
+.search-area-expansion {
+  width: 250px !important;/*テキスト入力エリアが伸びる後の横幅*/
+  padding: 20px 0 20px 60px !important;
+  box-shadow: 0 2px rgba(6,0,1,.26);
 }
