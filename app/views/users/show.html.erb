@@ -5,12 +5,12 @@
     </div>
     <div class="col-8 mt-5">
       <h2 class="text-center"><strong>投稿料理一覧</strong></h2>
-      <table class="table table-hover table-inverse">
-        <thead>
+      <table class="table table-hover table-inverse ">
+        <thead class="thead-dark">
             <tr>
                 <th>完成写真</th>
                 <th>タイトル</th>
-                <th></th>
+                <th>コメント数</th>
                 <th>評価(平均)</th>
             </tr>
         </thead>
@@ -25,7 +25,7 @@
               <td>
                 <%= link_to cook.title, "/cooks/#{cook.id}" %>
               </td>
-              <td>コメント数: <%= cook.cook_comments.count %></td>
+              <td><%= cook.cook_comments.count %></td>
                 <% if @rate[cook.id] %>
                   <td><%= @rate[cook.id].round(1) %></td>
                 <% else %>

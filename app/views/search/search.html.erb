@@ -3,7 +3,7 @@
     <% if @model == "user" %>
       <h2 class="text-center pt-5"><strong>ユーザー名'<%= @value %>'の検索結果</strong></h2>
       <table class="table mt-5">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th></th>
             <th>ユーザー名</th>
@@ -40,7 +40,7 @@
         <% elsif @model == "cook" %>
           <h2 class="text-center pt-5">投稿タイトル'<%= @value %>'の検索結果</h2>
           <table class="table mt-5">
-            <thead>
+            <thead class="thead-dark">
               <tr>
                 <th>完成写真</th>
                 <th>タイトル</th>
