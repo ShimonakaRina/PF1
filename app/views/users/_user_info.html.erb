@@ -14,6 +14,22 @@
 	      <td><%= user.introduction %></td>
       </tr>
       <tr>
+	      <td>アカウント作成日</td>
+	      <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+      <tr>
+	      <td>最終ログイン日</td>
+	      <td><%= user.current_sign_in_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+      <tr>
+	      <td>投稿数</td>
+	      <td><%= @cooks1.count %></td>
+      </tr>
+      <tr>
+	      <td>いいねした投稿</td>
+	      <td><%= link_to user.favorites.count, user_favorites_path(user) %></td>
+      </tr>
+      <tr>
         <td>フォロー</td>
         <td><%= link_to user.following_user.count, user_followings_path(user) %></td>
       </tr>

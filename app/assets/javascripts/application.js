@@ -35,7 +35,7 @@ jQuery(document).on('turbolinks:load', function(){
 });
 
 // ページ読み込み完了後一度実行する処理を中に記載する
-$(function(){
+jQuery(document).on('turbolinks:load', function(){
   //.search-area-formが押されたら実行する
   $('.search-area-form').on('click', function() {
     //押された要素にsearch-area-expansionクラスを付ける
