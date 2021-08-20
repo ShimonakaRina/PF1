@@ -35,7 +35,7 @@ $(function(){
       </tr>
       <tr>
         <td>タイトル</td>
-        <td><%= link_to @cook.title, cook_path(@cook.id) %></td>
+        <td><%= @cook.title %></td>
       </tr>
       <tr>
         <td>タグ</td>
@@ -62,10 +62,18 @@ $(function(){
       <tr>
         <td>評価</td>
         <% if @rate.present? %>
-        <td><%= @rate.round(1) %></td>
-      <% else %>
-        <td>評価なし</td>
-      <% end %>
+          <td><%= @rate.round(1) %></td>
+      　<% else %>
+          <td>評価なし</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>投稿日</td>
+        <td><%= @cook.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+      <tr>
+        <td>最終更新日</td>
+        <td><%= @cook.updated_at.strftime("%Y-%m-%d") %></td>
       </tr>
       <tr>
         <td></td>

@@ -1,4 +1,4 @@
-<table>
+<table class="ml-5">
   <% cook_comments.each do |cook_comment| %>
     <% cook_comment_user = cook_comment.user %>
     <tr>
@@ -25,6 +25,7 @@
     </script>
   </div>
     	 </td>
+    	 <td><%= " (#{time_ago_in_words(cook_comment.created_at)} 前)" %></td>
     	 <% if current_user == cook_comment_user %>
       	 <td>
       	   <%= link_to cook_cook_comment_path(cook_comment.cook_id, cook_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true do %>削除
