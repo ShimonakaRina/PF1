@@ -37,13 +37,13 @@
               <% end %>
             </th>
             <td id="favorite_buttons_<%= cook.id %>">
-            <%= render "favorites/favorites", cook: cook %>
+              <%= render "favorites/favorites", cook: cook %>
             </td>
             <td><%= cook.cook_comments.count %></td>
             <% if @rate[cook.id] %>
-            <td><%= @rate[cook.id].round(1) %></td>
+              <td><%= @rate[cook.id].round(1) %></td>
             <% else %>
-            <td>評価なし</td>
+              <td>評価なし</td>
             <% end %>
           <% end %>
       </tbody>
