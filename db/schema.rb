@@ -13,19 +13,19 @@
 ActiveRecord::Schema.define(version: 2021_08_03_060809) do
 
   create_table "cook_comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "cook_id"
-    t.string "comment"
-    t.float "rate"
+    t.integer "user_id", null: false
+    t.integer "cook_id", null: false
+    t.string "comment", null: false
+    t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "cooks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.integer "tag_relationships_id"
-    t.integer "user_id"
-    t.string "body"
+    t.integer "user_id", null: false
+    t.string "body", null: false
     t.string "cook_image_id"
     t.datetime "created_at", null: false
     t.datetime "update_at"
@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(version: 2021_08_03_060809) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "cook_id"
+    t.integer "user_id", null: false
+    t.integer "cook_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "cook_id"
-    t.integer "cook_comment_id"
+    t.integer "cook_id", null: false
+    t.integer "cook_comment_id", null: false
     t.integer "visiter_id", null: false
     t.integer "visited_id", null: false
     t.string "action", default: "", null: false
@@ -51,15 +51,15 @@ ActiveRecord::Schema.define(version: 2021_08_03_060809) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tag_relationships", force: :cascade do |t|
-    t.integer "cook_id"
-    t.integer "tag_id"
+    t.integer "cook_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_060809) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "name"
+    t.string "name", null: false
     t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
