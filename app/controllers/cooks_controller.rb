@@ -14,8 +14,8 @@ class CooksController < ApplicationController
      flash[:notice] = "新規投稿に成功しました！"
      redirect_to cook_path(@cook.id)
     else
-     render action: :index
-     flash[:notice] = "投稿に失敗しました。タイトルとレシピは必ず入力してください。"
+     render action: :new
+     flash[:notice] = "投稿に失敗しました。タイトルかレシピは必ず入力し、字数制限も守ってください。"
     end
   end
 
