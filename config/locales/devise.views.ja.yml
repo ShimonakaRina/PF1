@@ -2,6 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
+        name: 名前
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -27,6 +28,22 @@ ja:
         updated_at: 更新日
     models:
       user: ユーザー
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken:  既に登録済みです
+              blank:  入力してください
+            password:
+              blank:  入力してください
+              too_short: 6文字以上で登録してください。
+            password_confirmation:
+              confirmation: 正確に入力してください。
+            name:
+              blank: 入力してください
+              too_long: ２０文字以内で入力してください
+
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
