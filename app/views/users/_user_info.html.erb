@@ -19,7 +19,11 @@
       </tr>
       <tr>
 	      <td>最終ログイン日</td>
-	      <td><%= user.current_sign_in_at.strftime("%Y-%m-%d") %></td>
+	      <% if user.current_sign_in_at %>
+	        <td><%= user.current_sign_in_at.strftime("%Y-%m-%d") %></td>
+	      <% else %>
+	        <td>ログインなし</td>
+	      <% end %>
       </tr>
       <tr>
 	      <td>投稿数</td>
