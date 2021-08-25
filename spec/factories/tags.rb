@@ -1,8 +1,9 @@
 FactoryBot.define do
+  
+  factory :tag do
 
-  factory :tags do
-    
-    name    {"肉"}
+    name               {"test"}
+
   end
   
 end

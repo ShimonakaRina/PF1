@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_060809) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "cook_id", null: false
-    t.integer "cook_comment_id", null: false
+    t.integer "cook_id"
+    t.integer "cook_comment_id"
     t.integer "visiter_id", null: false
     t.integer "visited_id", null: false
     t.string "action", default: "", null: false

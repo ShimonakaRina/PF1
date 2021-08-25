@@ -40,4 +40,6 @@ class User < ApplicationRecord
   attachment :profile_image
   validates :name, presence: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 100 }
+  validates :encrypted_password, presence: true
+  
 end
