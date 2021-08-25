@@ -12,17 +12,17 @@
     	 <td><%= cook_comment.comment %></td>
     	 <td>
     	   <div id="rate_star<%= cook_comment.id%>"></div>
-    <script>
-    $('#rate_star<%= cook_comment.id%>').raty({
-        size      : 36,
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half      : true,
-        readOnly: true,
-        score: <%= cook_comment.rate %>,
-      });
-    </script>
+         <script>
+          $('#rate_star<%= cook_comment.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half      : true,
+            readOnly: true,
+            score: <%= cook_comment.rate %>,
+          });
+         </script>
   </div>
     	 </td>
     	 <td><%= " (#{time_ago_in_words(cook_comment.created_at)} 前)" %></td>

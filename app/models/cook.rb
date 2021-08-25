@@ -61,6 +61,7 @@ class Cook < ApplicationRecord
         self.tags << cook_tag
       end
     end
+    
     def self.sort(selection)
       case selection
       when 'new'
@@ -76,4 +77,5 @@ class Cook < ApplicationRecord
 
     validates :title, presence: true, length: { maximum: 30 }
     validates :body, presence: true
+
 end

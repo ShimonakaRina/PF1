@@ -32,17 +32,83 @@ ja:
       models:
         user:
           attributes:
+            created_at:
+              blank: 登録日が存在しません。
+            updated_at:
+              blank: 更新日が存在しません。
             email:
-              taken:  既に登録済みです
-              blank:  入力してください
+              taken:  既に登録済みです。
+              blank:  入力してください。
             password:
-              blank:  入力してください
+              blank:  入力してください。
               too_short: 6文字以上で登録してください。
+            encrypted_password:
+              blank: 入力してください。
             password_confirmation:
               confirmation: 正確に入力してください。
+            introduction:
+              too_long: 100文字以上で入力してください
             name:
-              blank: 入力してください
-              too_long: ２０文字以内で入力してください
+              blank: 入力してください。
+              too_long: ２０文字以内で入力してください。
+        cook:
+          attributes:
+            title:
+              blank: タイトルを入力してください。
+              too_long: 30文字以内で入力してください。
+            body:
+              blank: レシピが存在しません。
+            updated_at:
+              blank: 更新日が存在しません。
+            created_at:
+              blank: 投稿日が存在しません。
+            user:
+              required: ユーザーIDが存在しません。
+        favorite:
+          attributes:
+            cook:
+              required: 投稿IDが存在しません。
+            user:
+              required: ユーザーIDが存在しません。
+            updated_at:
+              blank: いいね更新した日が存在しません。
+            created_at:
+              blank: いいねした日が存在しません。
+        tag:
+          attributes:
+            name:
+              too_long: タグ名は10文字以内で入力してください。
+            created_at:
+              blank: 投稿日が存在しません。
+            updated_at:
+              blank: 更新日が存在しません。
+        relationship:
+          attributes:
+            follower:
+              required: フォローIDが存在しません。
+            followed:
+              required: フォロワーIDが存在しません。
+            created_at:
+              blank: フォローした日が存在しません。
+            updated_at:
+              blank: フォロー更新日が存在しません。
+        cook_comment:
+          attributes:
+            created_at:
+              blank: 投稿日が存在しません。
+            updated_at:
+              blank: 更新日が存在しません。
+            comment:
+              blank: コメントがありません。
+            rate:
+              blank: 評価がありません。
+              less_than_or_equal_to: 評価は最大５までです。
+              greater_than_or_equal_to: 最低0.5以上の評価をしてください。
+            user:
+              required: ユーザーIDが存在しません。
+            cook:
+              required: 投稿IDが存在しません。
+
 
   devise:
     confirmations:
