@@ -95,10 +95,22 @@ describe Cook do
     
     it "既にあるタグと同じ名前のタグのついた投稿をしてもタグは統合されるため追加されない" do
       tag = create(:tag, name: "肉")
-      create(:cook, tag_relationships_id: tag.id)
+      cook = create(:cook)
       
+      cook.save_tags(["肉"])
+      cook.save_tags(["肉"])
       
       expect(Tag.where(name: "肉").count).to eq 1
+    end
+    
+    it "既にあるタグと別の名前のタグのついた投稿をすると新たにタグが作成される。" do
+      tag = create(:tag, name: "肉")
+      cook = create(:cook)
+      
+      cook.save_tags(["野菜"])
+      cook.save_tags(["魚"])
+      
+      expect(Tag.count).to eq 3
     end
 
 
