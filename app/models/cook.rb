@@ -50,7 +50,7 @@ class Cook < ApplicationRecord
     def save_tags(savecook_tags)
       # タグデータを保存するとき、フォームから送られてきたタグデータのうち、すでに存在するタグネームがひとつでもあった場合はtagsテーブルのtag_nameカラムからpluckメソッドを使い一旦すべてのデータを引っ張ってきてcurrent_tagsに代入
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
-      old_tags = current_tags - savecook_tags　# すでに存在するタグデータの集合であるcurrent_tagsから、コントローラーから引数で渡ってきたtagsの配列を引くと古いタグ（old_tags)
+      old_tags = current_tags - savecook_tags # すでに存在するタグデータの集合であるcurrent_tagsから、コントローラーから引数で渡ってきたtagsの配列を引くと古いタグ（old_tags)
       new_tags = savecook_tags - current_tags
 
       old_tags.each do |old_name|
