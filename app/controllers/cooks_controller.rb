@@ -9,14 +9,15 @@ class CooksController < ApplicationController
     @user = current_user
     @cook.user_id = current_user.id
     tag_list = params[:cook][:tag_ids].split(',')
-    if @cook.save
-     @cook.save_tags(tag_list)
-     flash[:notice] = "新規投稿に成功しました！"
-     redirect_to cook_path(@cook.id)
-    else
-     render action: :index
-     flash[:notice] = "投稿に失敗しました。必須項目を入力し、字数制限も守ってください。"
+    ActiveRecord::Base.transaction do # do~endの間のもののうちどれかひとつでもエラーが起これば処理を行わないようにする
+      @cook.save
+      @cook.save_tags(tag_list)
+      flash[:notice] = "新規投稿に成功しました！"
+      redirect_to cook_path(@cook.id)
     end
+    rescue ActiveRecord::RecordInvalid # エラーが起こった場合救済措置として下の処理を行う
+     render action: :new
+     flash[:notice] = "投稿に失敗しました。必須項目を入力し、字数制限も守ってください。"
   end
 
   def rank
