@@ -12,6 +12,7 @@ class Cook < ApplicationRecord
           visited_id: user_id,
           action: "Favorite"
         )
+        # 自分の投稿に対するいいねの場合は、通知済みとする
         if notification.visiter_id == notification.visited_id
           notification.checked = true
         end
@@ -47,17 +48,17 @@ class Cook < ApplicationRecord
       favorites.where(user_id: user.id).exists?
     end
 
-    def save_tags(savecook_tags)
+    def save_tags(savecook_tags) # savecook_tagsはタグの中身のこと。tag_nameにあたる。テストなどで配列を入れるときは([])にいれることも。
       # タグデータを保存するとき、フォームから送られてきたタグデータのうち、すでに存在するタグネームがひとつでもあった場合はtagsテーブルのtag_nameカラムからpluckメソッドを使い一旦すべてのデータを引っ張ってきてcurrent_tagsに代入
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
       old_tags = current_tags - savecook_tags # すでに存在するタグデータの集合であるcurrent_tagsから、コントローラーから引数で渡ってきたtagsの配列を引くと古いタグ（old_tags)
       new_tags = savecook_tags - current_tags
 
-      old_tags.each do |old_name|
+      old_tags.each do |old_name| # Cookmodel内(投稿内)で同じ名前のタグを複数つけていた場合削除する
         self.tags.delete Tag.find_by(name: old_name)
       end
 
-      new_tags.each do |new_name|
+      new_tags.each do |new_name| # Tag全体で同じ名前があるかを探し、存在すればそのidを返し、なければ作成する
         cook_tag = Tag.find_or_create_by(name: new_name)
         self.tags << cook_tag
       end
