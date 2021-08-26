@@ -38,13 +38,70 @@ describe Cook do
       cook = create(:cook, user_id: visited.id)
       expect(cook.create_notification_by(visiter)).to be_truthy
     end
-    
-    it "投稿にコメントしたときコメントしている人と投稿者をすべて取得し、全員に通知を送る" do
+
+    it "自分の投稿にいいねをした場合、通知確認済みの扱いにする" do
       visiter = create(:user)
-      cook = create(:cook)
-      cook_comment = create(:cook_comment, cook_id: cook.id)
-      expect(cook.create_notification_comment!(visiter, cook_comment.id)).to be_truthy
+      cook = create(:cook, user_id: visiter.id)
+      cook.create_notification_by(visiter)
+      expect(Notification.where(visited_id: visiter.id, checked: true).count).to eq 1
     end
+
+    it "投稿にコメントしたとき以前にコメントしている人と投稿者をすべて取得し、全員に通知を送る" do
+      poster = create(:user, email: "user2@example.com")
+      cook = create(:cook, user_id: poster.id)
+
+      first_commenter = create(:user, email: "user3@example.com")
+      create(:cook_comment, cook_id: cook.id, user_id: first_commenter.id)
+
+      second_commenter = create(:user)
+      second_comment = create(:cook_comment, cook_id: cook.id, user_id: second_commenter.id)
+
+      cook.create_notification_comment!(second_commenter, second_comment.id)
+
+      expect(Notification.where(visited_id: first_commenter.id).count).to eq 1
+      expect(Notification.where(visited_id: poster.id).count).to eq 1
+    end
+
+    it "コメントは複数回することが考えられるため、１つの投稿に複数回通知する" do
+      visiter = create(:user)
+      visited = create(:user, email: "user2@example.com")
+      cook = create(:cook, user_id: visited.id)
+
+      cook_comment1 = create(:cook_comment, cook_id: cook.id, user_id: visiter.id)
+      cook_comment2 = create(:cook_comment, cook_id: cook.id, user_id: visiter.id)
+
+      cook.save_notification_comment!(visiter, cook_comment1.id, visited.id)
+      cook.save_notification_comment!(visiter, cook_comment2.id, visited.id)
+
+      expect(Notification.where(visited_id: visited.id).count).to eq 2
+    end
+
+    it "自分の投稿にコメントをした場合、通知確認済みの扱いにする" do
+      visited = create(:user)
+      cook = create(:cook, user_id: visited.id)
+      cook_comment = create(:cook_comment, cook_id: cook.id, user_id: visited.id)
+      
+      cook.save_notification_comment!(visited, cook_comment.id, visited.id)
+      
+      expect(Notification.where(visited_id: visited.id, checked: true).count).to eq 1
+    end
+
+    it "すでに投稿にいいねしているか確認する" do
+      user = create(:user)
+      cook = create(:cook, user_id: user.id)
+      create(:favorite, user_id: user.id, cook_id: cook.id)
+      expect(cook.favorited_by?(user)).to be_truthy
+    end
+    
+    it "既にあるタグと同じ名前のタグのついた投稿をしてもタグは統合されるため追加されない" do
+      tag = create(:tag, name: "肉")
+      create(:cook, tag_relationships_id: tag.id)
+      
+      
+      expect(Tag.where(name: "肉").count).to eq 1
+    end
+
+
 
   end
 end

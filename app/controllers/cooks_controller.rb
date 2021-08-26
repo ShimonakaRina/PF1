@@ -15,7 +15,7 @@ class CooksController < ApplicationController
      redirect_to cook_path(@cook.id)
     else
      render action: :index
-     flash[:notice] = "投稿に失敗しました。タイトルかレシピは必ず入力し、字数制限も守ってください。"
+     flash[:notice] = "投稿に失敗しました。必須項目を入力し、字数制限も守ってください。"
     end
   end
 
