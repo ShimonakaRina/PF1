@@ -78,6 +78,35 @@ describe User do
       expect(user).to be_valid
     end
 
+    it "フォローするとfollower（フォローしている人）が生成される" do
+      user1 = create(:user)
+      user2 = create(:user, email: "user2@example.com")
+      user2.follow(user1.id)
+      expect(user2.follower.count).to eq 1
+    end
+    
+    it "フォロー解除するとfollower（フォローしている人）が削除される" do
+      user1 = create(:user)
+      user2 = create(:user, email: "user2@example.com")
+      user2.follow(user1.id)
+      user2.unfollow(user1.id)
+      expect(user2.follower.count).to eq 0
+    end
+    
+    it "すでにフォローしているか確認する" do
+      user1 = create(:user)
+      user2 = create(:user, email: "user2@example.com")
+      user2.follow(user1.id)
+      expect(user2.following?(user1)).to be_truthy
+    end
+    
+    it "フォローしたとき相手に通知を作成する" do
+      visiter = create(:user)
+      visited = create(:user, email: "user2@example.com")
+      visiter.follow(visited.id)
+      expect(visiter.create_notification_follow!(visiter)).to be_truthy
+    end
+
 
   end
 end

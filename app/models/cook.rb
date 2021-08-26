@@ -24,8 +24,8 @@ class Cook < ApplicationRecord
         temp_ids.each do |temp_id|
             save_notification_comment!(current_user, cook_comment_id, temp_id['user_id'])
         end
-        # まだ誰もコメントしていない場合は、投稿者に通知を送る
-        save_notification_comment!(current_user, cook_comment_id, user_id) if temp_ids.blank?
+        # 投稿者に通知を送る
+        save_notification_comment!(current_user, cook_comment_id, user_id)
     end
 
     def save_notification_comment!(current_user, cook_comment_id, visited_id)
@@ -48,8 +48,9 @@ class Cook < ApplicationRecord
     end
 
     def save_tags(savecook_tags)
+      # タグデータを保存するとき、フォームから送られてきたタグデータのうち、すでに存在するタグネームがひとつでもあった場合はtagsテーブルのtag_nameカラムからpluckメソッドを使い一旦すべてのデータを引っ張ってきてcurrent_tagsに代入
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
-      old_tags = current_tags - savecook_tags
+      old_tags = current_tags - savecook_tags　# すでに存在するタグデータの集合であるcurrent_tagsから、コントローラーから引数で渡ってきたtagsの配列を引くと古いタグ（old_tags)
       new_tags = savecook_tags - current_tags
 
       old_tags.each do |old_name|
@@ -59,19 +60,6 @@ class Cook < ApplicationRecord
       new_tags.each do |new_name|
         cook_tag = Tag.find_or_create_by(name: new_name)
         self.tags << cook_tag
-      end
-    end
-    
-    def self.sort(selection)
-      case selection
-      when 'new'
-          return all.order(created_at: :DESC)
-      when 'old'
-          return all.order(created_at: :ASC)
-      when 'likes'
-          return find(Favorite.group(:cook_id).order(Arel.sql('count(cook_id) desc')).pluck(:cook_id))
-      when 'dislikes'
-          return find(Favorite.group(:cook_id).order(Arel.sql('count(cook_id) asc')).pluck(:cook_id))
       end
     end
 
