@@ -41,12 +41,17 @@ class CooksController < ApplicationController
   end
 
   def show
-    @cook = Cook.find(params[:id])
-    @user = @cook.user
-    @cook_comment = CookComment.new
+    if Cook.find_by(id: params[:id]).nil?
+      flash[:notice] = "投稿は削除されました。"
+      redirect_to request.referer
+    else
+      @cook = Cook.find(params[:id])
+      @user = @cook.user
+      @cook_comment = CookComment.new
 
-    @cook_comments = @cook.cook_comments.page(params[:page]).per(10)
-    @rate = CookComment.where(cook_id: params[:id]).group(:cook_id).average(:rate).values.first
+      @cook_comments = @cook.cook_comments.page(params[:page]).per(10)
+      @rate = CookComment.where(cook_id: params[:id]).group(:cook_id).average(:rate).values.first
+    end
   end
 
   def edit
@@ -72,6 +77,8 @@ class CooksController < ApplicationController
 
   def destroy
     @cook = Cook.find(params[:id])
+    @notification = Notification.where(cook_id: @cook.id)
+    @notification.destroy_all
     @cook.destroy
     redirect_to cooks_path
   end
