@@ -7,7 +7,7 @@ class CookCommentsController < ApplicationController
 		@cook_comment.user_id = current_user.id
 
 		if @cook_comment.save
-		   @cook.create_notification_comment!(current_user, @cook_comment.id)
+		   @cook.create_notification_comment!(current_user, @cook_comment.id) # コメント
 		   redirect_to cook_path(@cook)
 		else
 			flash[:notice] = "コメント投稿に失敗しました。本文と評価は必ず入力してください" 

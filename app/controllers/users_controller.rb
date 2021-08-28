@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def user_favorites
     @user = User.find(params[:user_id])
     favorites = Favorite.where(user_id: @user.id).pluck(:cook_id)
-    @cooks = Kaminari.paginate_array(Cook.find(favorites)).page(params[:page]).per(10)
+    @cooks = Kaminari.paginate_array(Cook.find(favorites)).page(params[:page]).per(10) # いいねした投稿を引っ張ってきてページネーション
     @rate = CookComment.group(:cook_id).average(:rate)
   end
 
